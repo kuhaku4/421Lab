@@ -32,7 +32,7 @@ app.config(function($routeProvider) {
         controller: 'DeleteController',
         controllerAs: 'vm'
       })
-      
+
       .when('/register', {
         templateUrl: '/auth/register.view.html',
         controller: 'RegisterController',
@@ -59,8 +59,7 @@ app.config(function($routeProvider) {
   
   function addBlog($http, data) {
     return $http.post('/api/blogs/add', data);
-        
-}
+  }
   
   function updateBlogById($http, id, data) {
     return $http.put('/api/blogs/' + id, data);
