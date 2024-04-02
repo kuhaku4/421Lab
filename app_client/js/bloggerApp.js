@@ -32,6 +32,18 @@ app.config(function($routeProvider) {
         controller: 'DeleteController',
         controllerAs: 'vm'
       })
+      
+      .when('/register', {
+        templateUrl: '/auth/register.view.html',
+        controller: 'RegisterController',
+        controllerAs: 'vm'
+      })
+  
+      .when('/signOn', {
+        templateUrl: '/auth/login.view.html',
+        controller: 'LoginController',
+        controllerAs: 'vm'
+      })
   
       .otherwise({redirectTo: '/'});
   });
