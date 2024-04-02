@@ -1,0 +1,13 @@
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-primary">
+    <a class="navbar-brand" style="margin-left: 10px;" href="/">MyBlog</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav flex-grow-1">
+            <a class="nav-item nav-link active" href="#!/blogs">List Blogs</a>
+            <a class="nav-item nav-link active" href="#!/blog/add">Add Blog</a>
+        </div>
+        <div class="navbar-nav">
+            <a ng-show="!navvm.isLoggedIn()" style="margin-right: 10px;" class="nav-item nav-link active ml-auto" href="#!/signOn">Sign In</a>
+            <a ng-show="navvm.isLoggedIn()" style="margin-right: 10px;" class="nav-item nav-link active" href="" ng-click="navvm.logout()">Logout <small>({{ navvm.currentUser().email }})</small></a>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,17 @@
+bitnami_application_password
+bitnami_credentials
+.cache
+.mongodb
+.npm
+.ssh
+.vscode-server
+htdocs
+stack
+.bash_history
+.bash_logout
+.bashrc
+.profile
+.viminfo
+.wget-hsts
+nohup.out
+.gitconfig

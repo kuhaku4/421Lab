@@ -1,0 +1,113 @@
+<html ng-app="bloggerApp" class="ng-scope">
+<head>
+  <script src="/lib/angular.min.js"></script>
+  <script src="/lib/angular-route.min.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' />
+  <script src="/js/bloggerApp.js"></script>
+  <script src="/auth/authentication.js"></script>
+  <script src="/nav/navigation.js"></script>
+</head>
+  
+  <body>
+  <!-- Angular Templates -->
+  <script type="text/ng-template" id="pages/home.html">
+    <p></p>
+    <h2 style="font-size: 40px; font-weight: 900">{{vm.pageHeader.title}}</h2>
+    <p></p><p></p>
+    <h5 style="font-size: 22px; font-weight: bold">{{vm.message}}</h5>
+  </script>
+
+  <script type="text/ng-template" id="pages/blogList.html">
+    <br>
+    <p>{{vm.message}}</p>
+    <div ng-repeat="blog in vm.blogs">
+        <div class="card border-dark" style="width: 50%"> 
+            <div class="text-secondary bg-dark card-header bg-dark">
+                <h5 class="card-title">{{blog.createdDate | date:'medium'}}</h5>
+            </div>
+            <div class="card-body bg-dark">
+                <h6 class="text-secondary bg-dark card-subtitle mb-2" style="font-size: 24px; font-weight: 900;">{{blog.blogtitle}}</h6>
+                <p class="text-secondary bg-dark card-text" style="font-size: 16px;">{{blog.blogtext}}</p>
+            </div>
+            <div class="card-footer bg-dark">
+                <div class="col-sm">
+                    <ul class="nav justify-content-end nav-pills card-header-pills">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!/blogs/{{blog._id}}"><i class="fas fa-edit"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!/blogs/delete/{{blog._id}}"><i class="fas fa-trash-alt"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p></p>
+    </div>
+</script>
+
+  <script type="text/ng-template" id="pages/blogAdd.html">
+    <p></p>
+    <div class="text-secondary bg-dark card border-dark" style="width: 50%"> 
+      <form name="userForm" ng-submit="vm.submit()" ng-controller="AddController" style="padding: 20px">
+        <div class="form-group">
+          <label for="summary" class="text-seconday">Blog Title</label>
+          <!-- Use ng-model to bind the input value to vm.blog.title -->
+          <input class="text-light bg-dark form-control" id="title" name="title" ng-model="vm.blog.title">
+
+          <label for="text" class="text-seconadry">Blog Text</label>
+          <!-- Use ng-model to bind the textarea value to vm.blog.text -->
+          <textarea class="text-light bg-dark form-control" id="text" name="text" rows="3" ng-model="vm.blog.text"></textarea>
+
+          <!-- Use ng-disabled to disable the submit button if the form is invalid -->
+          <button class="btn btn-light text-secondary bg-dark" type="submit" ng-disabled="userForm.$invalid">Submit</button>
+        </div>
+      </form>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="pages/blogEdit.html">
+    <p></p>
+    <div class="text-secondary bg-dark card border-dark" style="width: 50%">  
+      <form name="userForm" ng-submit="vm.submit()" ng-controller="EditController" style="padding: 20px">
+        <div class="text-secondary bg-dark form-group">
+          <label for="summary" class="text-secondary bg-dark">Blog Title</label>
+          <input class="text-light bg-dark form-control" id="title" name="title" ng-model="vm.blog.blogtitle">
+
+          <label for="detail" class="text-secondary bg-dark">Blog Text</label>
+          <textarea class="text-light bg-dark form-control" id="text" name="text" rows="3" ng-model="vm.blog.blogtext"></textarea>
+
+          <!-- Use ng-disabled to disable the submit button if the form is invalid -->
+          <button class="btn btn-light text-secondary bg-dark" type="submit" ng-disabled="userForm.$invalid">Update</button>
+        </div>
+      </form>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="pages/blogDelete.html">
+    <p></p>
+      <div class="text-secondary bg-dark card border-dark" style="width: 50%">
+        <form name="userForm" ng-submit="vm.submit()" ng-controller="DeleteController" style="padding: 20px">
+          <div class="text-secondary bg-dark form-group">
+              <label for="summary" class="text-secondary bg-dark">Blog Title</label>
+              <input readonly class="text-secondary bg-dark form-control" id="title" name="title" value="{{vm.blog.blogtitle}}">
+
+              <label for="detail" class="text-secondary bg-dark">Blog Text</label>
+              <textarea readonly class="text-secondary bg-dark form-control" id="text" name="text" rows="3">{{vm.blog.blogtext}}</textarea>
+          </div>
+             <input type="submit" class="btn btn-danger float-right" style="margin-right: 10px; margin-top: 15px" value="Delete Blog">
+             <button ng-click="vm.cancel()" ng-controller="DeleteController" class="btn btn-primary float-right" style="margin-top: 15px">Cancel</button></form>
+      </div>
+  </script>
+
+  <div ng-controller="NavigationController">
+    <navigation></navigation>
+  </div>
+
+<!-- Angular View -->
+  <div ng-view></div>
+
+</body>
+</html>
