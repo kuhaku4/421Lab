@@ -48,6 +48,7 @@ module.exports.login = function(req, res) {
   }
 
   passport.authenticate('local', function(err, user, info) {
+    console.log("JWT Secret:", process.env.JWT_SECRET);
     console.log("Passport authentication result:", err, user, info);
     var token;
 
