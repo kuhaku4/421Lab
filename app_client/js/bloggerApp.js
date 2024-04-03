@@ -58,7 +58,7 @@ app.config(function($routeProvider) {
   }
   
   function addBlog($http, authentication, data) {
-    return $http.post('/api/blogs/', data, { headers: { Authorization: 'Bearer '+ authentication.getToken() }} );
+    return $http.post('/api/blogs/add', data, { headers: { Authorization: 'Bearer '+ authentication.getToken() }} );
   }
   
   function updateBlogById($http, authentication, id, data) {
@@ -103,7 +103,7 @@ app.config(function($routeProvider) {
         });
   });
   
-  app.controller('AddController', ['$http', '$location', function AddController($http, $location) {
+  app.controller('AddController', ['$http', '$location', 'authentication', function AddController($http, $location, authentication) {
     var vm = this;
     vm.blog = {
       blogtitle: '',
@@ -120,7 +120,7 @@ app.config(function($routeProvider) {
         blogtext: vm.blog.text
       };
   
-      addBlog($http, data)
+      addBlog($http, authentication, data)
         .then(function (addedBlog) {
             vm.blog = {};
             vm.message = "";
@@ -133,7 +133,7 @@ app.config(function($routeProvider) {
     };
 }]);
 
-app.controller('EditController', ['$http', '$routeParams', '$location', function EditController($http, $routeParams, $location) {
+app.controller('EditController', ['$http', '$routeParams', '$location', 'authentication', function EditController($http, $routeParams, $location, authentication) {
   var vm = this;
   vm.blog = {};
   vm.id = $routeParams.id;
@@ -155,7 +155,7 @@ app.controller('EditController', ['$http', '$routeParams', '$location', function
 
   // Update the blog
   vm.submit = function() {
-      updateBlogById($http, vm.id, vm.blog)
+      updateBlogById($http, authentication, vm.id, vm.blog)
           .then(function(response) {
               vm.message = "";
               $location.path('/blogs'); // Redirect to the blog list after successful update
@@ -166,7 +166,7 @@ app.controller('EditController', ['$http', '$routeParams', '$location', function
   };
 }]);
 
-app.controller('DeleteController', [ '$http', '$routeParams', '$location', function DeleteController($http, $routeParams, $location) {
+app.controller('DeleteController', [ '$http', '$routeParams', '$location', 'authentication', function DeleteController($http, $routeParams, $location, authentication) {
   var vm = this;
   vm.blog = {};
   vm.id = $routeParams.id;
@@ -185,7 +185,7 @@ app.controller('DeleteController', [ '$http', '$routeParams', '$location', funct
   });
 
   vm.submit = function() {
-    deleteBlogById($http, vm.id)
+    deleteBlogById($http, authentication, vm.id)
       .then(function() {
         $location.path('/blogs'); // Redirect to the blog list after successful deletion
       })
