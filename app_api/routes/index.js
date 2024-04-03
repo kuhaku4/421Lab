@@ -5,10 +5,10 @@ var ctrlBlogs = require('../controllers/blogs');
 var ctrlAuth = require('../controllers/authentication');
 var jwt = require('express-jwt');
 
-var auth = jwt({
+var auth = jwt({   // Lab 6
     secret: process.env.JWT_SECRET,
     userProperty: 'payload'
-});
+  });
 
 
 router.get('/blogs', ctrlBlogs.blogsList);
