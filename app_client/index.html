@@ -31,13 +31,13 @@
                 <h6 class="text-secondary bg-dark card-subtitle mb-2" style="font-size: 24px; font-weight: 900;">{{blog.blogtitle}}</h6>
                 <p class="text-secondary bg-dark card-text" style="font-size: 16px;">{{blog.blogtext}}</p>
             </div>
-            <div class="card-footer bg-dark">
+            <div class="card-footer bg-dark" ng-show="navvm.isLoggedIn()">
                 <div class="col-sm">
                     <ul class="nav justify-content-end nav-pills card-header-pills">
-                        <li class="nav-item" ng-show="navvm.isLoggedIn()">
+                        <li class="nav-item">
                             <a class="nav-link" href="#!/blogs/{{blog._id}}"><i class="fas fa-edit"></i></a>
                         </li>
-                        <li class="nav-item" ng-show="navvm.isLoggedIn()">
+                        <li class="nav-item">
                             <a class="nav-link" href="#!/blogs/delete/{{blog._id}}"><i class="fas fa-trash-alt"></i></a>
                         </li>
                     </ul>
