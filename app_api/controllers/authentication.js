@@ -24,9 +24,11 @@ module.exports.register = function(req, res) {
 
   user.save() 
     .then(() => {
+      var token;
       // Log in the user after registration
       req.body.email = req.body.email; 
       req.body.password = req.body.password;
+      token = user.generateJwt();
       module.exports.login(req, res); 
     })
     .catch(err => {
@@ -55,7 +57,7 @@ module.exports.login = function(req, res) {
     }
 
     if (user) {
-      user.generateJwt()
+      token = user.generateJwt()
         .then(token => {
           sendJSONresponse(res, 200, {
             "token": token
