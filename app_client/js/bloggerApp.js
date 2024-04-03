@@ -57,16 +57,24 @@ app.config(function($routeProvider) {
     return $http.get('/api/blogs/' + id);
   }
   
-  function addBlog($http, data) {
-    return $http.post('/api/blogs/add', data);
+  function addBlog($http, authentication, data) {
+    return $http.post('/api/blogs/', data, { headers: { Authorization: 'Bearer '+ authentication.getToken() }} );
   }
   
-  function updateBlogById($http, id, data) {
-    return $http.put('/api/blogs/' + id, data);
+  function updateBlogById($http, authentication, id, data) {
+    return $http.put('/api/blogs/' + id, data, { headers: { Authorization: 'Bearer '+ authentication.getToken() }} );
   }
   
-  function deleteBlogById($http, id) {
-    return $http.delete('/api/blogs/' + id);
+  function deleteBlogById($http, authentication, id) {
+    return $http.delete('/api/blogs/' + id, { headers: { Authorization: 'Bearer ' + authentication.getToken() } })
+        .then(function(response) {
+            console.log("Delete request successful:", response);
+            return response.data;
+        })
+        .catch(function(error) {
+            console.error("Error deleting blog:", error);
+            throw error;
+        });
   }
   
   //Controllers
