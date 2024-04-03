@@ -70,6 +70,7 @@ module.exports.login = function(req, res) {
   })(req, res);
 
 };
+
 module.exports = function(req, res, next) {
   // Get the token from the request headers
   const token = req.headers.authorization;
