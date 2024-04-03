@@ -32,7 +32,7 @@
                 <p class="text-secondary bg-dark card-text" style="font-size: 16px;">{{blog.blogtext}}</p>
             </div>
             <div class="card-footer bg-dark">
-                <div ng-show="navvm.isLoggedIn()" class="col-sm">
+                <div class="col-sm" ng-show="vm.isLoggedIn()">
                     <ul class="nav justify-content-end nav-pills card-header-pills">
                         <li class="nav-item">
                             <a class="nav-link" href="#!/blogs/{{blog._id}}"><i class="fas fa-edit"></i></a>

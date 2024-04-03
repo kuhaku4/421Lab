@@ -86,11 +86,16 @@ app.config(function($routeProvider) {
     vm.message = "Welcome to a very basic blogger app.";
   });
   
-  app.controller('ListController', function ListController($http) {
+  app.controller('ListController', ['$http', 'authentication', function ListController($http, authentication) {
     var vm = this;
     vm.pageHeader = {
         title: "Blog List"
     };
+    vm.isLoggedIn = function() {
+        console.log(authentication.isLoggedIn());
+        return authentication.isLoggedIn();
+    }
+
     vm.message = "Retrieving blogs";
     getAllBlogs($http)
         .then(function (response) {
@@ -101,7 +106,7 @@ app.config(function($routeProvider) {
             console.error("Error fetching blogs:", error);
             vm.message = "No blogs found. Try Adding a Blog First";
         });
-  });
+  }]);
   
   app.controller('AddController', ['$http', '$location', 'authentication', function AddController($http, $location, authentication) {
     var vm = this;
