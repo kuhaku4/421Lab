@@ -16,6 +16,7 @@ app.controller('NavigationController', ['$location', 'authentication', function 
         return authentication.currentUser();
     }
     navvm.isLoggedIn = function() {
+      console.log("test");
         return authentication.isLoggedIn();
     }
     navvm.logout = function() {
