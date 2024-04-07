@@ -145,7 +145,9 @@ app.config(function($routeProvider) {
     vm.submit = function () {
       var data = {
         blogtitle: vm.blog.title,
-        blogtext: vm.blog.text
+        blogtext: vm.blog.text,
+        userEmail: authentication.currentUser().email,
+        userName: authentication.currentUser().name
       };
   
       addBlog($http, authentication, data)

@@ -9,7 +9,9 @@ var sendJSONresponse = function(res, status, content) {
 var initBlog = function (body) {
   return {
       blogtitle: body.blogtitle,
-      blogtext: body.blogtext
+      blogtext: body.blogtext,
+      userEmail: body.userEmail,
+      userName: body.userName
   }
 }
 
@@ -55,9 +57,14 @@ module.exports.blogsList = function(req, res) {
   // Create a new blog
   module.exports.blogsCreate = function(req, res) {
     console.log("Blog Add Request");
-    var blog = initBlog (req.body)
+    var blog = initBlog (req.body);
+    console.log(req.body);
     Blog
-    .create (blog)
+    .create ({      
+        blogtitle: req.body.blogtitle,
+        blogtext: req.body.blogtext,
+        userEmail: req.body.userEmail,
+        userName: req.body.userName} )
         .then(function (newBlog) {
             console.log("Added Blog: "+newBlog)
             sendJSONresponse (res, 201, newBlog)
