@@ -86,7 +86,7 @@ app.config(function($routeProvider) {
     vm.message = "Welcome to a very basic blogger app.";
   });
   
-  app.controller('ListController', ['$http', 'authentication', function ListController($http, authentication) {
+  app.controller('ListController', ['$http', '$scope', '$interval', 'authentication', function ListController($http,$scope, $interval, authentication) {
     var vm = this;
     vm.pageHeader = {
         title: "Blog List"
@@ -106,6 +106,19 @@ app.config(function($routeProvider) {
             console.error("Error fetching blogs:", error);
             vm.message = "No blogs found. Try Adding a Blog First";
         });
+        $scope.callAtInterval = function() {
+          console.log("Interval occurred");
+          getAllBlogs($http)
+            .then(function(data) {
+            vm.blogs = data;
+            vm.message = "Blogs list found!";
+            })
+            .catch(function (error) {
+              console.error("Error fetching blogs:", error);
+            vm.message = "Could not get list of blogs";
+          });								  
+        }
+        $interval( function(){$scope.callAtInterval();}, 3000, 0, true);
   }]);
   
   app.controller('AddController', ['$http', '$location', 'authentication', function AddController($http, $location, authentication) {
