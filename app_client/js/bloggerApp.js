@@ -95,6 +95,16 @@ app.config(function($routeProvider) {
         console.log(authentication.isLoggedIn());
         return authentication.isLoggedIn();
     }
+    vm.isAuthorized = function(userEmail) {
+      if (authentication.isLoggedIn()) {
+        var auth = authentication.currentUser().email;
+        
+        if (auth === userEmail) {
+          return true;
+        }
+      }
+      return false; 
+    };
 
     vm.message = "Retrieving blogs";
     getAllBlogs($http)
