@@ -109,13 +109,13 @@ app.config(function($routeProvider) {
         $scope.callAtInterval = function() {
           console.log("Interval occurred");
           getAllBlogs($http)
-            .then(function(data) {
-            vm.blogs = data;
-            //vm.message = "Blogs list found!";
+            .then(function(response) {
+            vm.blogs = response.data;
+            // vm.message = "Blogs list found!";
             })
             .catch(function (error) {
               console.error("Error fetching blogs:", error);
-            //vm.message = "Could not get list of blogs";
+            // vm.message = "Could not get list of blogs";
           });								  
         }
         $interval( function(){$scope.callAtInterval();}, 3000, 0, true);
