@@ -1,4 +1,4 @@
-var app = angular.module('bloggerApp');
+var app = angular.module('bloggerApp'); //
 
 app.directive('navigation', function() {
     return {
