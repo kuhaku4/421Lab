@@ -11,6 +11,7 @@
 // npm i mustache@2.3.0
 // npm i standard@10.0.2
 // npm i uglify-js@3.6.0
+// npm install chess.js
 
 // start anonymous scope
 ;(function () {

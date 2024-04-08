@@ -10,6 +10,7 @@
     "angular-route": "^1.8.3",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.11.3",
+    "chess.js": "^1.0.0-beta.8",
     "cookie-parser": "~1.4.4",
     "csso": "^3.5.1",
     "debug": "~2.6.9",
