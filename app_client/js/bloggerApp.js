@@ -85,6 +85,20 @@ app.config(function($routeProvider) {
     };
     vm.message = "Welcome to a very basic blogger app.";
   });
+
+  app.controller('ChessboardController', function($scope) {
+    $scope.board = null;
+  
+    $scope.initBoard = function() {
+      $scope.board = Chessboard('board', {
+        draggable: true,
+        dropOffBoard: 'snapback',
+        sparePieces: true
+      });
+    };
+  
+    $scope.initBoard();
+  });
   
   app.controller('ListController', ['$http', '$scope', '$interval', 'authentication', function ListController($http,$scope, $interval, authentication) {
     var vm = this;
