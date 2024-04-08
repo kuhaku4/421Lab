@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@chrisoakman/chessboardjs": "^1.0.0",
     "angular": "^1.8.3",
     "angular-route": "^1.8.3",
     "bootstrap": "^5.2.3",
