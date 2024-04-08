@@ -44,6 +44,12 @@ app.config(function($routeProvider) {
         controller: 'LoginController',
         controllerAs: 'vm'
       })
+
+      .when('/chess', {
+        templateUrl: 'pages/chess.html',
+        controller: 'ChessController',
+        controllerAs: 'vm'
+      })
   
       .otherwise({redirectTo: '/'});
   });
