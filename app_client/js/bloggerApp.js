@@ -324,26 +324,3 @@ app.controller('DeleteController', [ '$http', '$routeParams', '$location', 'auth
     $location.path('/blogs'); // Redirect to the blog list if cancel is clicked
   }
 }]);
-
-module.exports = app => {
-
-  app.get('/chess', (req, res) => {
-      res.render('pages/chess.html');
-  });
-
-  app.get('/white', (req, res) => {
-      res.render('game', {
-          color: 'white'
-      });
-  });
-
-  app.get('/black', (req, res) => {
-      if (!games[req.query.code]) {
-          return res.redirect('/?error=invalidCode');
-      }
-
-      res.render('game', {
-          color: 'black'
-      });
-  });
-};
