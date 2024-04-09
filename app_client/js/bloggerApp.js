@@ -92,6 +92,7 @@ app.config(function($routeProvider) {
     vm.message = "Welcome to a very basic blogger app.";
   });
 
+  // Save FEN string to database and use it to load the game onto every screen
   app.controller('ChessboardController', ['$scope', '$http', '$interval', 'authentication', function ChessboardController($scope, $http, $interval, authentication) {
     $scope.initBoard = function() {
       var board = null;
