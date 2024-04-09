@@ -47,7 +47,19 @@ app.config(function($routeProvider) {
 
       .when('/chess', {
         templateUrl: 'pages/chess.html',
-        controller: 'ChessController',
+        controller: 'ChessboardController',
+        controllerAs: 'vm'
+      })
+
+      .when('/white?code=', {
+        templateUrl: 'pages/chess.html',
+        controller: 'ChessboardController',
+        controllerAs: 'vm'
+      })
+
+      .when('/black?code=', {
+        templateUrl: 'pages/chess.html',
+        controller: 'ChessboardController',
         controllerAs: 'vm'
       })
   

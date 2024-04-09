@@ -24,17 +24,44 @@
     <h2 style="font-size: 40px; font-weight: 900">{{vm.pageHeader.title}}</h2>
     <p></p><p></p>
     <h5 style="font-size: 22px; font-weight: bold">{{vm.message}}</h5>
-    <div id="myBoard" style="width: 400px" ng-controller="ChessboardController" ng-init="initBoard()"></div>
-    <label>Status:</label>
-    <div id="status"></div>
-    <label>FEN:</label>
-    <div id="fen"></div>
-    <label>PGN:</label>
-    <div id="pgn"></div>
   </script>
 
   <script type="text/ng-template" id="pages/chess.html">
+    <div id="myBoard" style="width: 400px" ng-controller="ChessboardController" ng-init="initBoard()"></div>
+    <label>Status:</label>
+    <div id="status"></div>
+    <label>PGN:</label>
+    <div id="pgn"></div>
+    <h2>Game code</h2>
+    <input type="text" id="codeInput">
+    <button id="createGame">Create game</button>
+    <button id="joinGame">Join game</button>
+    <div style="color: red" id="errorMessage"></div>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var createGameBtn = document.getElementById("createGame");
+        var joinGameBtn = document.getElementById("joinGame");
+    
+        createGameBtn.addEventListener("click", function() {
+          var codeInput = document.getElementById("codeInput").value;
+          if (codeInput.trim() !== "") {
+            window.location.href = "#!/white?code=" + codeInput;
+          } else {
+            document.getElementById("errorMessage").innerText = "Please enter a game code.";
+          }
+        });
+    
+        joinGameBtn.addEventListener("click", function() {
+          var codeInput = document.getElementById("codeInput").value;
+          if (codeInput.trim() !== "") {
+            window.location.href = "#!/black?code=" + codeInput;
+          } else {
+            document.getElementById("errorMessage").innerText = "Please enter a game code.";
+          }
+        });
+      });
+    </script>
   </script>
   
 
