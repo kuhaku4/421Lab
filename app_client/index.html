@@ -24,11 +24,19 @@
     <h2 style="font-size: 40px; font-weight: 900">{{vm.pageHeader.title}}</h2>
     <p></p><p></p>
     <h5 style="font-size: 22px; font-weight: bold">{{vm.message}}</h5>
+    <div id="myBoard" style="width: 400px" ng-controller="ChessboardController" ng-init="initBoard()"></div>
+    <label>Status:</label>
+    <div id="status"></div>
+    <label>FEN:</label>
+    <div id="fen"></div>
+    <label>PGN:</label>
+    <div id="pgn"></div>
   </script>
 
   <script type="text/ng-template" id="pages/chess.html">
-    <div id="myBoard" style="width: 400px"></div>
+
   </script>
+  
 
   <script type="text/ng-template" id="pages/blogList.html">
     <br>
