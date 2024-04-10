@@ -50,6 +50,18 @@ app.config(function($routeProvider) {
         controller: 'ChessboardController',
         controllerAs: 'vm'
       })
+
+      .when('/black', {
+        templateUrl: 'pages/chess.html',
+        controller: 'BlackController',
+        controllerAs: 'vm'
+      })
+
+      .when('/white', {
+        templateUrl: 'pages/chess.html',
+        controller: 'WhiteController',
+        controllerAs: 'vm'
+      })
   
       .otherwise({redirectTo: '/'});
   });

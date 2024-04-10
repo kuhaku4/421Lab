@@ -45,10 +45,10 @@
 
         <script>
             $('#createGame').on('click', function() {
-                window.location.replace('/white?code=' + $('#codeInput').val());
+                window.location.replace('#!/white?code=' + $('#codeInput').val());
             });
             $('#joinGame').on('click', function() {
-                window.location.replace('/black?code=' + $('#codeInput').val());
+                window.location.replace('#!/black?code=' + $('#codeInput').val());
             });
 
             var urlParams = new URLSearchParams(window.location.search);
