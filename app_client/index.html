@@ -31,31 +31,22 @@
     <h5 style="font-size: 22px; font-weight: bold">{{vm.message}}</h5>
   </script>
 
-  <script type="text/ng-template" id="pages/chess.html">
+  <script type="text/ng-template" id="pages/chessai.html">
     <div id="myBoard" style="width: 800px" ng-controller="ChessboardController" ng-init="initBoard()"></div>
     <label>Status:</label>
     <div id="status"></div>
     <label>PGN:</label>
-    <div id="pgn"></div>
-    <h2>Game code</h2>
-        <input type="text" id="codeInput">
-        <button id="createGame">Create game</button>
-        <button id="joinGame">Join game</button>
-        <div style="color: red" id="errorMessage"></div>
+    <div id="pgn"></div> 
+  </script>
 
-        <script>
-            $('#createGame').on('click', function() {
-                window.location.replace('#!/white?code=' + $('#codeInput').val());
-            });
-            $('#joinGame').on('click', function() {
-                window.location.replace('#!/black?code=' + $('#codeInput').val());
-            });
+  <script type="text/ng-template" id="pages/chess.html">
+    <a href="http://107.22.52.92:3037">
+      <button> Play Against Player </button>
+    </a>
+    <a href="http://107.22.52.92/#!/chess/ai">
+      <button> Play Against Computer </button>
+    </a>
 
-            var urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('error') == 'invalidCode') {
-                $('#errorMessage').text('Invalid invite code');
-            }
-        </script>
   </script>
   
 

@@ -1,9 +1,15 @@
 var createError = require('http-errors');
+const http = require('http')
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
+const server = http.Server(express)
+var socket = require('socket.io');
+const myIo = require('./sockets/io');
+const io = socket(server);
+myIo(io);
 
 require('./app_api/models/db');
 require('./app_api/config/passport');
