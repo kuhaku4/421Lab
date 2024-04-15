@@ -116,13 +116,11 @@ app.config(function($routeProvider) {
   // Save FEN string to database and use it to load the game onto every screen
   app.controller('ChessboardControllerAI', ['$scope', '$http', '$interval', 'authentication', function ChessboardController($scope, $http, $interval, authentication) {
     $scope.initBoard = function() {
-      // NOTE: this example uses the chess.js library:
+    // NOTE: this example uses the chess.js library:
     // https://github.com/jhlywa/chess.js
 
     var board = null
     var game = new Chess()
-    var $status = $('#status')
-    var $pgn = $('#pgn')
 
     function onDragStart (source, piece, position, orientation) {
       // do not pick up pieces if the game is over
@@ -164,9 +162,6 @@ app.config(function($routeProvider) {
       board.position(game.fen())
     }
 
-    $status.html(status)
-    $pgn.html(game.pgn())
-
     var config = {
       draggable: true,
       position: 'start',
@@ -175,8 +170,8 @@ app.config(function($routeProvider) {
       onSnapEnd: onSnapEnd
     }
     board = Chessboard('myBoard', config)
-  
-      updateStatus();
+
+    updateStatus()
     };
   
     $scope.$on('$viewContentLoaded', function() {
